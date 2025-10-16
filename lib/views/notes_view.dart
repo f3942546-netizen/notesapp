@@ -1,3 +1,4 @@
+import 'package:fares/views/widgets/notes_view_body.dart';
 import 'package:flutter/material.dart';
 
 class NotesView extends StatelessWidget {
@@ -5,6 +6,6 @@ class NotesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar());
+    return NotesViewBody();
   }
 }
