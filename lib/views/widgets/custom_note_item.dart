@@ -26,7 +26,7 @@ class noteitem extends StatelessWidget {
                   'Build Your career with Fares Elhadad',
                   style: TextStyle(
                     color: Colors.black.withOpacity(0.4),
-                    fontSize: 20,
+                    fontSize: 18,
                   ),
                 ),
               ),
