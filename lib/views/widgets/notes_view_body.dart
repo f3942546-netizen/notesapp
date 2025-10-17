@@ -1,5 +1,4 @@
 import 'package:fares/views/widgets/custom_app_bar.dart';
-import 'package:fares/views/widgets/custom_note_item.dart';
 import 'package:fares/views/widgets/notes_list_view.dart';
 import 'package:flutter/material.dart';
 
