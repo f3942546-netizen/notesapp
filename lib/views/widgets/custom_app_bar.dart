@@ -2,15 +2,16 @@ import 'package:fares/views/widgets/custom_icon.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
-
+  const CustomAppBar({super.key, required this.title, required this.icon});
+  final String title;
+  final IconData icon;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text('Notes', style: TextStyle(fontSize: 28)),
+        Text(title, style: TextStyle(fontSize: 28)),
         Spacer(),
-        customsarechicon(),
+        CustomIcon(icon: icon),
       ],
     );
   }
@@ -21,6 +22,6 @@ class customsarechicon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomIcon();
+    return customsarechicon();
   }
 }
