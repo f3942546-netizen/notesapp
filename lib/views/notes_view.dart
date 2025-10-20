@@ -1,5 +1,4 @@
 import 'package:fares/views/widgets/add_note_bottom_sheet.dart';
-import 'package:fares/views/widgets/custom_button.dart';
 import 'package:fares/views/widgets/notes_view_body.dart';
 import 'package:flutter/material.dart';
 
