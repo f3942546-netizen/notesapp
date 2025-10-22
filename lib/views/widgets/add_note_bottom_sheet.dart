@@ -5,33 +5,37 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class AddNoteBottomSheet extends StatelessWidget {
-  AddNoteBottomSheet({super.key});
+  const AddNoteBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => NotesCubit(),
-      child: BlocConsumer<NotesCubit, NotesState>(
-        listener: (context, state) {
-          if (state is Notesfailure) {
-            print('failed${state.errmessage}');
-          }
-          if (state is Notessucess) {
-            Navigator.pop(context);
-          }
-        },
-        builder: (context, state) {
-          return AbsorbPointer(
-            absorbing: state is Notesloading ? true : false,
-            child: ModalProgressHUD(
-                inAsyncCall: true,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: SingleChildScrollView(child: AddNoteForm()),
-                )),
-          );
-        },
-      ),
+    return BlocConsumer<NotesCubit, NotesState>(
+      listener: (context, state) {
+        if (state is Notesfailure) {
+          print('failed ${state.errmessage}');
+        }
+        if (state is Notessucess) {
+          Navigator.pop(context);
+        }
+      },
+      builder: (context, state) {
+        return AbsorbPointer(
+          absorbing: state is Notesloading ? true : false,
+          child: ModalProgressHUD(
+            inAsyncCall: state is Notesloading ? true : false,
+            child: Padding(
+              padding: EdgeInsets.only(
+                left: 16,
+                right: 16,
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: const SingleChildScrollView(
+                child: AddNoteForm(),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
