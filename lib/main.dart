@@ -8,15 +8,22 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   Bloc.observer = SimpleBlocObserve();
+
   await Hive.initFlutter();
-  await Hive.openBox(knotesbox);
   Hive.registerAdapter(NoteModelAdapter());
-  runApp(notesapp());
+
+  await Hive.deleteBoxFromDisk(knotesbox);
+
+  await Hive.openBox<NoteModel>(knotesbox);
+
+  runApp(const NotesApp());
 }
 
-class notesapp extends StatelessWidget {
-  const notesapp({super.key});
+class NotesApp extends StatelessWidget {
+  const NotesApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +36,7 @@ class notesapp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(brightness: Brightness.dark),
-        home: NotesView(),
+        home: const NotesView(),
       ),
     );
   }
