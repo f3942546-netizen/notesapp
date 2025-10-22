@@ -12,7 +12,7 @@ class NotesView extends StatelessWidget {
     return BlocProvider(
       create: (context) => NotesCubit()..fetchAllNotes(),
       child: Builder(
-        builder: (context) => Scaffold(
+        builder: (innerContext) => Scaffold(
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               showModalBottomSheet(
@@ -20,11 +20,11 @@ class NotesView extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
-                context: context,
-                builder: (context) {
-                  // مرّر نفس الـ Cubit بدل ما تعمل واحد جديد
+                context: innerContext, // ✅ استخدم innerContext هنا
+                builder: (_) {
                   return BlocProvider.value(
-                    value: BlocProvider.of<NotesCubit>(context),
+                    value:
+                        BlocProvider.of<NotesCubit>(innerContext), // ✅ برضو هنا
                     child: const AddNoteBottomSheet(),
                   );
                 },
